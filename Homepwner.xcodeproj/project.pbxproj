@@ -12,6 +12,7 @@
 		7D309E8720FE7AE1000353EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D309E8520FE7AE1000353EA /* Main.storyboard */; };
 		7D309E8920FE7AE2000353EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D309E8820FE7AE2000353EA /* Assets.xcassets */; };
 		7D309E8C20FE7AE2000353EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D309E8A20FE7AE2000353EA /* LaunchScreen.storyboard */; };
+		7D309E9420FE81C0000353EA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D309E9320FE81C0000353EA /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7D309E8820FE7AE2000353EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D309E8B20FE7AE2000353EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D309E8D20FE7AE2000353EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D309E9320FE81C0000353EA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		7D309E7520FE7AE1000353EA = {
 			isa = PBXGroup;
 			children = (
+				7D309E9320FE81C0000353EA /* Item.swift */,
 				7D309E8020FE7AE1000353EA /* Homepwner */,
 				7D309E7F20FE7AE1000353EA /* Products */,
 			);
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D309E8420FE7AE1000353EA /* ViewController.swift in Sources */,
+				7D309E9420FE81C0000353EA /* Item.swift in Sources */,
 				7D309E8220FE7AE1000353EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +294,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ngo.jason.Homepwner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ngo.jason.Homepwner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
