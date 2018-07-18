@@ -33,3 +33,23 @@ Why is itemStore set externally on ItemsViewController?
 
 Dependency Injection:
 - High level objects don't assume which lower-level objects they need to use. These are passed in as parameters.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+UIAlertController:
+- Often used to warn users that an important action is about to happen.
+- Give them a chance to cancel the action
+
+.actionSheet:
+- used to present user with a list of actions from which to choose
+- if user can back out of a decision or if action is not critical than .actionSheet may be better
+
+.alert:
+- used to display critical information to require user to decide how to precede.
+
+Design Patterns:
+
+Delegation - One object delegates certain responsibilities to another object.
+Data Source - Data source is responsible for providing data to another object when requested.
+MVC -
+Target-Action Pairs - One object calls a method on another object when a specfic event occurs. Target is the object that has a method called on it, action is the method being called. 
