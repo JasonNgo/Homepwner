@@ -11,6 +11,9 @@ import UIKit
 class ItemStore {
     var allItems = [Item]()
     
+    var itemsOver50 = [Item]()
+    var itemsUnder50 = [Item]()
+    
     init() {
         for _ in 0..<5 {
             createItem()
@@ -19,6 +22,13 @@ class ItemStore {
     
     @discardableResult func createItem() -> Item {
         let newItem = Item(random: true)
+        
+        if newItem.valueInDollars > 50 {
+            itemsOver50.append(newItem)
+        } else {
+            itemsUnder50.append(newItem)
+        }
+        
         allItems.append(newItem)
         
         return newItem
