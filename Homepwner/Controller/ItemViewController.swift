@@ -21,6 +21,9 @@ class ItemViewController: UITableViewController {
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,30 +53,35 @@ class ItemViewController: UITableViewController {
     /// MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count + 1
-    }
-    
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let cell = tableView.cellForRow(at: indexPath)
-        
-        if cell?.textLabel?.text == "No more items available" {
-            return nil
-        }
-        
-        return indexPath
+        return itemStore.allItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
-        if indexPath.row == itemStore.allItems.count {
-            cell.textLabel?.text = "No more items available"
-            cell.detailTextLabel?.text = ""
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+        
+        let item = itemStore.allItems[indexPath.row]
+        cell.nameLabel.text = item.name
+        cell.serialNumberLabel.text = item.serialNumber
+        cell.valueLabel.text = "\(item.valueInDollars)"
+        
+        if item.valueInDollars > 50 {
+            cell.valueLabel.textColor = UIColor.red
         } else {
-            let item = itemStore.allItems[indexPath.row]
-            cell.textLabel?.text = item.name
-            cell.detailTextLabel?.text = "\(item.valueInDollars)"
+            cell.valueLabel.textColor = UIColor.green
         }
+        
+//        if indexPath.row == itemStore.allItems.count {
+//            cell = UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
+//            cell.textLabel?.text = "No more items available"
+//            cell.detailTextLabel?.text = ""
+//        } else {
+//
+//            let item = itemStore.allItems[indexPath.row]
+//            cell.nameLabel.text = item.name
+//            cell.serialNumberLabel.text = item.serialNumber
+//            cell.valueLabel.text = "\(item.valueInDollars)"
+//        }
         
         return cell
     }
