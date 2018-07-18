@@ -50,15 +50,30 @@ class ItemViewController: UITableViewController {
     /// MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        return itemStore.allItems.count + 1
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        if cell?.textLabel?.text == "No more items available" {
+            return nil
+        }
+        
+        return indexPath
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
-        let item = itemStore.allItems[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "\(item.valueInDollars)"
+        if indexPath.row == itemStore.allItems.count {
+            cell.textLabel?.text = "No more items available"
+            cell.detailTextLabel?.text = ""
+        } else {
+            let item = itemStore.allItems[indexPath.row]
+            cell.textLabel?.text = item.name
+            cell.detailTextLabel?.text = "\(item.valueInDollars)"
+        }
         
         return cell
     }
@@ -66,9 +81,44 @@ class ItemViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = itemStore.allItems[indexPath.row]
-            itemStore.removeItem(item)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let title = "Delete \(item.name)?"
+            let message = "Are you sure you want to delete this item?"
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+                self.itemStore.removeItem(item)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            ac.addAction(cancelAction)
+            ac.addAction(deleteAction)
+            
+            present(ac, animated: true, completion: nil)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == itemStore.allItems.count {
+            return false
+        }
+        
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        
+        if proposedDestinationIndexPath.row == itemStore.allItems.count {
+            return sourceIndexPath
+        }
+        
+        return proposedDestinationIndexPath
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove"
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
