@@ -1,6 +1,6 @@
 # iOS-Practise-Homepwner
 
-Practise application that stores a list of items that you have at your house.
+Practise application that records a list of items with serial numbers and value.
 
 Custom Initializers:
 - Classes have two kinds of initializers:
