@@ -16,6 +16,7 @@
 		7D4C723B20FF79A50012019E /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C723A20FF79A50012019E /* ItemStore.swift */; };
 		7D4C723D20FFDD990012019E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C723C20FFDD990012019E /* ItemCell.swift */; };
 		7D4C723F21012B780012019E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C723E21012B780012019E /* DetailViewController.swift */; };
+		7D4C724121013BD80012019E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C724021013BD80012019E /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7D4C723A20FF79A50012019E /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemStore.swift; path = Homepwner/Model/ItemStore.swift; sourceTree = SOURCE_ROOT; };
 		7D4C723C20FFDD990012019E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemCell.swift; path = Homepwner/View/ItemCell.swift; sourceTree = SOURCE_ROOT; };
 		7D4C723E21012B780012019E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7D4C724021013BD80012019E /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				7D4C723C20FFDD990012019E /* ItemCell.swift */,
+				7D4C724021013BD80012019E /* CustomTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4C724121013BD80012019E /* CustomTextField.swift in Sources */,
 				7D309E9D20FE85EC000353EA /* Item.swift in Sources */,
 				7D309E9C20FE85EC000353EA /* ItemViewController.swift in Sources */,
 				7D4C723B20FF79A50012019E /* ItemStore.swift in Sources */,
