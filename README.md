@@ -47,9 +47,31 @@ UIAlertController:
 .alert:
 - used to display critical information to require user to decide how to precede.
 
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Stack Views:
+- Useful for interfaces with a linear layout 
+
+Auto Layout:
+- Every view has an intrinsic content size
+- If you do not explicitly determine height or width, view uses its intrinsic content size to derive values
+- Derives value from intrinsic content size using:
+    - views content hugging priorities: Like a rubber band around a view. The higher the priority the stronger the rubber band. Higher priority wont stretch. Higher priority = more it wants to hug its intrinsic content size
+    - views content compression resistance priorities: How much a view resists getting smaller than its intrinsic content 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Segues:
+- Segues move another view controller's onto the screen.
+- Each segue has a style, action item and identifier
+    - style: how the view transition will be presented
+    - action item: the view object in the storyboard file that triggers the segue
+    - identifier - programmically access the segue
+    
+
+
 Design Patterns:
 
-Delegation - One object delegates certain responsibilities to another object.
-Data Source - Data source is responsible for providing data to another object when requested.
-MVC -
-Target-Action Pairs - One object calls a method on another object when a specfic event occurs. Target is the object that has a method called on it, action is the method being called. 
+- Delegation - One object delegates certain responsibilities to another object.
+- Data Source - Data source is responsible for providing data to another object when requested.
+- Target-Action Pairs - One object calls a method on another object when a specfic event occurs. Target is the object that has a method called on it, action is the method being called. 
