@@ -11,6 +11,7 @@ import UIKit
 class ItemViewController: UITableViewController {
 
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -49,6 +50,7 @@ class ItemViewController: UITableViewController {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.item = item
+                detailViewController.imageStore = imageStore
             }
         default:
             preconditionFailure("Unexpected segue identifier")
@@ -123,6 +125,7 @@ class ItemViewController: UITableViewController {
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
                 self.itemStore.removeItem(item)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.imageStore.removeImage(forKey: item.imageKey)
             }
             
             ac.addAction(cancelAction)

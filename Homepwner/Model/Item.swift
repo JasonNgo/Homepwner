@@ -14,12 +14,14 @@ class Item: NSObject {
     var valueInDollars: Int
     var serialNumber: String?
     let dateCreated: Date
+    let imageKey: String
     
     init(name: String, valueInDollars: Int, serialNumber: String?) {
         self.name = name
         self.valueInDollars = valueInDollars
         self.serialNumber = serialNumber
         self.dateCreated = Date()
+        self.imageKey = UUID().uuidString
         
         super.init()
     }
