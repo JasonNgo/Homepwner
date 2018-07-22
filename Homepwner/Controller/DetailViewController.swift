@@ -39,6 +39,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         return formatter
     }()
     
+    // MARK: - Lifecycle methods
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -69,20 +71,21 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         }
     }
     
+    // MARK: - IBActions
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
         } else {
             imagePicker.sourceType = .photoLibrary
         }
-        
-        imagePicker.delegate = self
         
         present(imagePicker, animated: true, completion: nil)
     }

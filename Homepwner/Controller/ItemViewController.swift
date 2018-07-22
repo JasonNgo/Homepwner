@@ -19,6 +19,8 @@ class ItemViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
+    // MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -57,6 +59,8 @@ class ItemViewController: UITableViewController {
         }
     }
     
+    // MARK: - IBActions
+    
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         let newItem = itemStore.createItem()
         
@@ -76,7 +80,7 @@ class ItemViewController: UITableViewController {
 //        }
 //    }
 
-    /// MARK: - UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemStore.allItems.count
@@ -135,26 +139,24 @@ class ItemViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.row == itemStore.allItems.count {
-            return false
-        }
-        
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        
-        if proposedDestinationIndexPath.row == itemStore.allItems.count {
-            return sourceIndexPath
-        }
-        
-        return proposedDestinationIndexPath
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Remove"
-    }
+    // Used for a challenge of having a row at the bottom that is always the bottom
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        if indexPath.row == itemStore.allItems.count {
+//            return false
+//        }
+//
+//        return true
+//    }
+
+    // Used for a challenge of having a row at the bottom that is always the bottom
+//    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+//
+//        if proposedDestinationIndexPath.row == itemStore.allItems.count {
+//            return sourceIndexPath
+//        }
+//
+//        return proposedDestinationIndexPath
+//    }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
