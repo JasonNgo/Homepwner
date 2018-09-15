@@ -1,5 +1,7 @@
 # iOS-Practise-Homepwner
 
+Application was created using the resource: iOS Programming: The Big Nerd Ranch Guide (6th Edition)
+
 Practise application that records a list of items with serial numbers and value. Users are presented with a tableview upon launch that
 shows a list of items the user has recorded. The user can press the '+' key in the top right to create an object. Users can tap an items
 row to view a detailed view. The detailed view allows the user to add a picture to the item.
