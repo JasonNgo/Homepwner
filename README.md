@@ -1,6 +1,11 @@
 # iOS-Practise-Homepwner
 
-Practise application that records a list of items with serial numbers and value.
+Practise application that records a list of items with serial numbers and value. Users are presented with a tableview upon launch that
+shows a list of items the user has recorded. The user can press the '+' key in the top right to create an object. Users can tap an items
+row to view a detailed view. The detailed view allows the user to add a picture to the item.
+
+NOTES
+----------------------------------------------------------------------------------------------------------------------------------
 
 Custom Initializers:
 - Classes have two kinds of initializers:
