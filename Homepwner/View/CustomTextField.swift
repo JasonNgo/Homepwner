@@ -12,17 +12,14 @@ class CustomTextField: UITextField {
     
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder()
-        
-        self.borderStyle = .line
-        
+        borderStyle = .line
+        return true
+    }
+
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder()
+        borderStyle = .roundedRect
         return true
     }
     
-    override func resignFirstResponder() -> Bool {
-        super.resignFirstResponder()
-        
-        self.borderStyle = .roundedRect
-        
-        return true
-    }
-}
+} // CustomTextField

@@ -9,43 +9,30 @@
 import UIKit
 
 class ItemViewController: UITableViewController {
-
+    
     var itemStore: ItemStore!
     var imageStore: ImageStore!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         navigationItem.leftBarButtonItem = editButtonItem
     }
-    
+
     // MARK: - Lifecycle methods
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-//        let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
-//        tableView.contentInset = insets
-//        tableView.scrollIndicatorInsets = insets
-        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         tableView.reloadData()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         switch segue.identifier {
         case "detailSegue"?:
             if let row = tableView.indexPathForSelectedRow?.row {
@@ -58,18 +45,18 @@ class ItemViewController: UITableViewController {
             preconditionFailure("Unexpected segue identifier")
         }
     }
-    
+
     // MARK: - IBActions
-    
-    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
+
+    @IBAction func addNewItem(_: UIBarButtonItem) {
         let newItem = itemStore.createItem()
-        
+
         if let index = itemStore.allItems.index(of: newItem) {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.insertRows(at: [indexPath], with: .automatic)
         }
     }
-    
+
 //    @IBAction func toggleEditingMode(_ sender: UIButton) {
 //        if isEditing {
 //            sender.setTitle("Edit", for: .normal)
@@ -81,64 +68,55 @@ class ItemViewController: UITableViewController {
 //    }
 
     // MARK: - UITableViewDataSource
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return itemStore.allItems.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
-        
+
         let item = itemStore.allItems[indexPath.row]
         cell.nameLabel.text = item.name
         cell.serialNumberLabel.text = item.serialNumber
         cell.valueLabel.text = "\(item.valueInDollars)"
-        
+
         if item.valueInDollars > 50 {
             cell.valueLabel.textColor = UIColor.red
         } else {
             cell.valueLabel.textColor = UIColor.green
         }
-        
-//        if indexPath.row == itemStore.allItems.count {
-//            cell = UITableViewCell(style: .default, reuseIdentifier: "UITableViewCell")
-//            cell.textLabel?.text = "No more items available"
-//            cell.detailTextLabel?.text = ""
-//        } else {
-//
-//            let item = itemStore.allItems[indexPath.row]
-//            cell.nameLabel.text = item.name
-//            cell.serialNumberLabel.text = item.serialNumber
-//            cell.valueLabel.text = "\(item.valueInDollars)"
-//        }
-        
+
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+
+    override func tableView(_: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = itemStore.allItems[indexPath.row]
-            
+
             let title = "Delete \(item.name)?"
             let message = "Are you sure you want to delete this item?"
-            
+
             let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-            
+
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
                 self.itemStore.removeItem(item)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.imageStore.removeImage(forKey: item.imageKey)
             }
-            
+
             ac.addAction(cancelAction)
             ac.addAction(deleteAction)
-            
+
             present(ac, animated: true, completion: nil)
         }
     }
     
+    override func tableView(_: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+
     // Used for a challenge of having a row at the bottom that is always the bottom
 //    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 //        if indexPath.row == itemStore.allItems.count {
@@ -158,8 +136,4 @@ class ItemViewController: UITableViewController {
 //        return proposedDestinationIndexPath
 //    }
     
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
-    }
 }
-
